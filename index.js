@@ -18,20 +18,17 @@ function formSubmit(event) {
     }
 }
 
-function checkValidity() {
-    if (this.validity.valid) {
-        //clear out the error message??
-    } else {
-        // if(this.validity.)
-    }
-}
-
 form.addEventListener("submit", formSubmit, false)
-email.addEventListener("input", checkValidity)
+password.addEventListener("input", function(){
+    if (passwordConfirmation.value != password.value) {
+        console.log(`error pass:${password.value} confir:${passwordConfirmation.value}`)
+        passwordConfirmation.setCustomValidity("Passwords must match")
+    }
+})
 passwordConfirmation.addEventListener("input", function () {
     if (passwordConfirmation.value != password.value) {
         console.log(`error pass:${password.value} confir:${passwordConfirmation.value}`)
-        input.setCustomValidity(message)
+        this.setCustomValidity("Passwords must match")
     } else if (this.validity.patternMismatch) {
         showError(this, "Password must contain things")
     } else if (this.validity.valueMissing) {
